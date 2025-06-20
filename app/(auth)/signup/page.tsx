@@ -1,23 +1,30 @@
+import { GitHubLoginButton } from "@/components/GitHubLoginButton";
+import { GoogleLoginButton } from "@/components/GoogleLoginButton";
 import { Navbar } from "@/components/navbar";
-import { SocialButton } from "@/components/socialButtons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { auth } from "@/lib/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function SignupPage() {
+const SignupPage = async () => {
+  const session = await auth();
+  if (session) redirect("/");
   return (
     <>
       <Navbar />
       <div className='flex justify-center items-center px-4 min-h-[80vh]'>
-        <form className='space-y-6 bg-white shadow p-6 rounded w-full max-w-md'>
+        <div className='space-y-6 bg-white shadow p-6 rounded w-full max-w-md'>
           <h2 className='font-semibold text-xl text-center'>Create Account</h2>
 
-          <div className='space-y-3'>
+          <form className='space-y-3'>
             <Input type='text' placeholder='Full Name' />
             <Input type='email' placeholder='Email' />
             <Input type='password' placeholder='Password' />
-            <Button className='w-full'>Sign Up</Button>
-          </div>
+            <Button className='w-full' type='submit'>
+              Sign Up
+            </Button>
+          </form>
 
           <div className='relative text-center'>
             <span className='top-3 absolute inset-x-0 border-gray-200 border-t'></span>
@@ -27,8 +34,8 @@ export default function SignupPage() {
           </div>
 
           <div className='space-y-2'>
-            <SocialButton provider='google' />
-            <SocialButton provider='github' />
+            <GoogleLoginButton />
+            <GitHubLoginButton />
           </div>
 
           <div className='text-gray-600 text-sm text-center'>
@@ -37,8 +44,10 @@ export default function SignupPage() {
               Login
             </Link>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );
-}
+};
+
+export default SignupPage;
