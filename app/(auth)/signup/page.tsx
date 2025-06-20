@@ -3,7 +3,8 @@ import { GoogleLoginButton } from "@/components/GoogleLoginButton";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { auth } from "@/lib/auth";
+import { auth, signIn } from "@/lib/auth";
+import { executeAction } from "@/lib/executiveAction";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -17,7 +18,17 @@ const SignupPage = async () => {
         <div className='space-y-6 bg-white shadow p-6 rounded w-full max-w-md'>
           <h2 className='font-semibold text-xl text-center'>Create Account</h2>
 
-          <form className='space-y-3'>
+          <form
+            action={async (formData: FormData) => {
+              "use server";
+              await executeAction({
+                actionFn: async () => {
+                  await signIn("credentials", formData);
+                },
+              });
+            }}
+            className='space-y-3'
+          >
             <Input type='text' placeholder='Full Name' />
             <Input type='email' placeholder='Email' />
             <Input type='password' placeholder='Password' />
