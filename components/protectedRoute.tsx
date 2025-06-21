@@ -12,7 +12,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
     <div className='flex flex-col justify-center items-center min-h-screen'>
       <div className='top-4 right-4 absolute'>
         <Button variant='destructive' onClick={handleSignOut}>
-          Logout
+          SignOut
         </Button>
       </div>
       <div className='bg-white shadow p-6 rounded-lg w-full max-w-md'>
