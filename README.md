@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+````markdown
+# 🔐 Next.js Auth Starter
 
-## Getting Started
+A simple authentication starter using **Next.js App Router**, **Auth.js**, **ShadCN UI**, and **Google OAuth** with support for credentials login.
 
-First, run the development server:
+## 🚀 Features
+
+- Email & password login (hardcoded for testing)
+- Google OAuth login
+- Auth.js with App Router support
+- Styled using ShadCN UI and TailwindCSS
+- Ready for PostgreSQL + Prisma
+
+## 📦 Getting Started
 
 ```bash
+git clone https://github.com/your-repo/nextjs-auth-starter
+cd nextjs-auth-starter
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+````
+
+## 🛠️ Environment Variables
+
+Create a `.env` file in the root of the project:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+AUTH_SECRET=your-random-secret-here
+AUTH_GOOGLE_ID=your-google-client-id
+AUTH_GOOGLE_SECRET=your-google-client-secret
+AUTH_TRUST_HOST=true
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 How to Get These Values
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `AUTH_SECRET`: Generate with `npx auth secret`
+- `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: Create a new project and OAuth app in [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+- `DATABASE_URL`: Get from your PostgreSQL provider
+- `NEXTAUTH_URL`: Usually `http://localhost:3000` in development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👤 Test Credentials (for Dev Only)
 
-## Learn More
+Use these to test the credentials login:
 
-To learn more about Next.js, take a look at the following resources:
+- **Email**: `test@example.com`
+- **Password**: `secret123`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+⚠️ These credentials are hardcoded for testing only.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```bash
+/app
+  /auth/login         → Login page
+  /auth/signup        → Signup page
+  /api/auth/[...nextauth].ts      → Auth.js route
+/components      → Reusable UI components
+/lib         →  Execute Actions
+.env       → Environment config
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🖼 UI Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ShadCN UI
+- Tailwind CSS
+- React Icons
+
+## 📄 License
+
+MIT – Free to use and modify. Please create a new branch for new features or updates then ensure to make a pull request.
+
+## 🙌 Credits
+
+- Next.js
+- Auth.js
+- ShadCN UI
+- Prisma
+
+```
+
+```
